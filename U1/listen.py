@@ -62,6 +62,19 @@ l.append("Maria")       # "Maria" ans Ende
 l.remove('hi')          # löscht das ERSTE Vorkommen von 'hi'
                         # Fehler wenn der Wert nicht existiert!
 
+popped = l.pop()        # entfernt das LETZTE Element und gibt es zurück
+print(popped)           # man kann den entfernten Wert also noch verwenden
+popped2 = l.pop(1)      # entfernt Element an Index 1 und gibt es zurück
+print(popped2)
+
+# Unterschied remove vs pop:
+# remove("hi") → sucht nach dem WERT, löscht erstes Vorkommen
+# pop(1)       → löscht nach INDEX, gibt den Wert zurück
+
+del l[2:4]              # löscht alle Elemente von Index 2 bis 3
+                        # funktioniert wie Slicing — end-Index ist NICHT dabei
+                        # gibt nichts zurück (kein Rückgabewert wie pop)
+
 # Alle 6er entfernen:
 for _ in l:             # _ = "den Wert brauche ich nicht"
     if 6 in l:          # solange 6 noch in der Liste ist...
