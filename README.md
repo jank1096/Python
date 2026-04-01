@@ -28,6 +28,7 @@ python3 U1/listen.py
 | `tuples.py` | Tuples: Vollständige Referenz mit allen Methoden |
 | `dt_tuples.py` | Tuples: Schulbeispiel mit Unpacking und Schleifen |
 | `aufgabe_filme.py` | Aufgabe: Filmdaten mit Tuple & Liste |
+| `speisekarte.py` | Aufgabe: Restaurant-Speisekarte mit Funktionen, Tuple & Liste |
 
 ### Uebungen/ — Buchaufgaben
 
