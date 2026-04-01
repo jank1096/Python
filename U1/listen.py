@@ -134,3 +134,52 @@ print(new_1_2)              # → [2, 3.5, False, 2, 4]  ← AUCH verändert!
 
 # Echte Kopie (unabhängig) erstellt man so:
 new_copy = new_list.copy()  # jetzt sind beide unabhängig voneinander
+
+
+# ============================================================
+# MATHEMATISCHE FUNKTIONEN AUF LISTEN
+# sum() und len() kennen wir schon — kombiniert ergibt das den Durchschnitt
+# ============================================================
+
+num_l = [10, 20, 30, 40, 50]
+
+print(sum(num_l))               # → 150  (alle Werte addiert)
+print(len(num_l))               # → 5    (Anzahl Elemente)
+print(sum(num_l) / len(num_l))  # → 30.0 (Durchschnitt = Summe / Anzahl)
+
+
+# ============================================================
+# all() und any() — prüfen ob Werte True oder False sind
+# Wichtig: 0 und False gelten als False, alles andere als True
+# ============================================================
+
+list_1 = [0, 1, True, False]    # enthält 0 und False → nicht alle True
+list_2 = [1, 1, True]           # alles ungleich 0 → alle True
+
+# all() → True nur wenn ALLE Elemente True sind
+print(all(list_1))  # → False  (weil 0 und False dabei sind)
+print(all(list_2))  # → True   (1, 1, True sind alle "truthy")
+
+# any() → True wenn MINDESTENS EIN Element True ist
+print(any(list_1))  # → True   (1 und True sind dabei)
+print(any(list_2))  # → True   (alle sind True)
+
+# Merkhilfe:
+# all() = UND-Verknüpfung (alle müssen True sein)
+# any() = ODER-Verknüpfung (mindestens eines muss True sein)
+
+
+# ============================================================
+# VERSCHACHTELTE LISTEN (Liste in einer Liste)
+# Zugriff: n_list[äußerer_index][innerer_index]
+# ============================================================
+
+n_list = [[1, 3, 4, 2], [5, 6, 7, 8, 9]]
+#          ↑ Index 0       ↑ Index 1
+
+print(n_list[0])        # → [1, 3, 4, 2]   erste innere Liste
+print(n_list[1])        # → [5, 6, 7, 8, 9] zweite innere Liste
+
+print(n_list[1][1])     # → 6
+# Schritt 1: n_list[1]   → [5, 6, 7, 8, 9]
+# Schritt 2: [5,6,7,8,9][1] → 6  (Index 1 dieser Liste)
