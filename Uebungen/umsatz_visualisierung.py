@@ -1,12 +1,18 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
+
+# __file__ = der Pfad dieser .py Datei
+# dirname = der Ordner in dem sie liegt
+# so findet Python die CSV immer, egal von wo du das Skript startest
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ============================================================
 # CSV einlesen
 # pd.read_csv liest die Datei, sep=';' weil Semikolon als Trennzeichen
 # index_col=0 setzt die erste Spalte (Stadt) als Zeilenindex
 # ============================================================
-df = pd.read_csv("umsatz.csv", sep=";", index_col=0)
+df = pd.read_csv(os.path.join(BASE_DIR, "umsatz.csv"), sep=";", index_col=0)
 
 print(df)           # Tabelle in der Konsole ausgeben zur Kontrolle
 print(df.columns)   # zeigt alle Spalten (= Jahre)
