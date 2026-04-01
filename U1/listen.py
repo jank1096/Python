@@ -98,3 +98,39 @@ for i in range(0, len(l)):
 # Wann welche?
 # → Variante 1: wenn du nur den WERT brauchst
 # → Variante 2: wenn du auch die POSITION brauchst
+
+
+# ============================================================
+# WEITERE NÜTZLICHE METHODEN
+# ============================================================
+
+# index() — gibt die POSITION eines Wertes zurück
+l.append("Maria")           # erst "Maria" wieder hinzufügen
+print(l.index("Maria"))     # → gibt den Index von "Maria" aus
+                            # Fehler wenn der Wert nicht in der Liste ist!
+
+# clear() — löscht ALLE Elemente, Liste bleibt aber bestehen
+l.clear()
+print(l)                    # → [] (leere Liste)
+
+
+# ============================================================
+# LISTEN ZUSAMMENFÜHREN & KOPIEREN
+# ============================================================
+
+l = [2, 3.5, False]         # Liste neu befüllen zum Weitermachen
+mylist = [2, 4, 6]
+
+new_list = l + mylist       # + verbindet zwei Listen zu einer neuen
+print(new_list)             # → [2, 3.5, False, 2, 4, 6]
+
+# ACHTUNG: Referenz vs. Kopie!
+new_1_2 = new_list          # keine echte Kopie — beide zeigen auf DIESELBE Liste
+                            # ändert man new_list, ändert sich auch new_1_2!
+
+new_list.pop()              # entfernt letztes Element (6) aus new_list
+print(new_list)             # → [2, 3.5, False, 2, 4]
+print(new_1_2)              # → [2, 3.5, False, 2, 4]  ← AUCH verändert!
+
+# Echte Kopie (unabhängig) erstellt man so:
+new_copy = new_list.copy()  # jetzt sind beide unabhängig voneinander
