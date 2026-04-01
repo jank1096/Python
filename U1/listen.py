@@ -2,184 +2,213 @@
 # LISTEN (Lists)
 # Eine Liste ist wie ein Regal mit nummerierten Fächern.
 # Sie kann alles enthalten: Zahlen, Text, Boolean, andere Listen.
+# Reihenfolge: Erstellen → Abrufen → Slicing → Verändern →
+#              Suchen → Löschen → Mathe → all/any → Schleifen →
+#              Kombinieren → Verschachtelt
 # ============================================================
-
-l = [2, 3.5, 'hi', False, [1, 2, 5]]  # noqa: E741
-#    ↑     ↑     ↑     ↑       ↑
-# Index: 0     1     2     3       4
-
-print(len(l))   # Anzahl der Elemente → 5
 
 
 # ============================================================
-# ELEMENTE ABRUFEN
+# 1. LISTE ERSTELLEN
 # ============================================================
 
-print(l[0])     # 2        → erstes Element (Index 0)
-print(l[3])     # False    → viertes Element (Index 3)
+l = [2, 3.5, "hi", False, [1, 2, 5]]
+#    ↑    ↑     ↑      ↑       ↑
+# Idx: 0    1     2      3       4
 
-# Negative Indizes: zählen von HINTEN
-print(l[-1])    # [1,2,5]  → letztes Element
-print(l[-6])    # 2        → 6. von hinten = erstes Element
-
-
-# ============================================================
-# LIST SLICING  →  l[start : end : step]
-# start = ab hier, end = bis hier (NICHT dabei), step = Schrittweite
-# ============================================================
-
-print(l[2:4])   # ['hi', False]          → Index 2 bis 3
-print(l[:4])    # [2, 3.5, 'hi', False]  → Anfang bis Index 3
-print(l[::2])   # [2, 'hi', [1,2,5]]     → jedes 2. Element
-print(l[::-1])  # [[1,2,5], False, 'hi', 3.5, 2] → Liste rückwärts
-print(l[3:])    # [False, [1,2,5]]       → ab Index 3 bis Ende
+print(len(l))   # → 5 (Anzahl Elemente)
 
 
 # ============================================================
-# LISTE VERÄNDERN
+# 2. ELEMENTE ABRUFEN
+# ============================================================
+
+print(l[0])     # → 2         erstes Element
+print(l[2])     # → 'hi'      drittes Element
+print(l[-1])    # → [1,2,5]   letztes Element (von hinten)
+print(l[-2])    # → False     vorletztes Element
+
+
+# ============================================================
+# 3. LIST SLICING  →  l[start : end : step]
+# start = ab hier | end = bis hier (NICHT dabei) | step = Schrittweite
+# ============================================================
+
+print(l[1:3])   # → [3.5, 'hi']              Index 1 bis 2
+print(l[:3])    # → [2, 3.5, 'hi']           Anfang bis Index 2
+print(l[2:])    # → ['hi', False, [1,2,5]]   ab Index 2 bis Ende
+print(l[::2])   # → [2, 'hi', [1,2,5]]       jedes 2. Element
+print(l[::-1])  # → [[1,2,5], False, 'hi', 3.5, 2]  rückwärts
+
+
+# ============================================================
+# 4. LISTE VERÄNDERN
 # ============================================================
 
 l.append(6)             # fügt 6 ans ENDE an
-print(l)                # [2, 3.5, 'hi', False, [1,2,5], 6]
+print(l)                # → [2, 3.5, 'hi', False, [1,2,5], 6]
 
 l.insert(2, "Halina")   # fügt "Halina" bei Index 2 ein
                         # alles dahinter rutscht einen Platz nach rechts
 print(l)
 
-mylist = [2, 4, 6]
-l.extend(mylist)        # hängt eine ganze andere Liste ans Ende an
-                        # (anders als append: kein [2,4,6] als Block, sondern einzeln)
+l[1] = 99               # überschreibt Index 1 direkt
+print(l)
 
-l[1] = 3.14             # überschreibt Index 1 direkt (3.5 → 3.14)
-
-l.append("Maria")       # "Maria" ans Ende
-
-
-# ============================================================
-# ELEMENTE LÖSCHEN
-# ============================================================
-
-l.remove('hi')          # löscht das ERSTE Vorkommen von 'hi'
-                        # Fehler wenn der Wert nicht existiert!
-
-popped = l.pop()        # entfernt das LETZTE Element und gibt es zurück
-print(popped)           # man kann den entfernten Wert also noch verwenden
-popped2 = l.pop(1)      # entfernt Element an Index 1 und gibt es zurück
-print(popped2)
-
-# Unterschied remove vs pop:
-# remove("hi") → sucht nach dem WERT, löscht erstes Vorkommen
-# pop(1)       → löscht nach INDEX, gibt den Wert zurück
-
-del l[2:4]              # löscht alle Elemente von Index 2 bis 3
-                        # funktioniert wie Slicing — end-Index ist NICHT dabei
-                        # gibt nichts zurück (kein Rückgabewert wie pop)
-
-# Alle 6er entfernen:
-for _ in l:             # _ = "den Wert brauche ich nicht"
-    if 6 in l:          # solange 6 noch in der Liste ist...
-        l.remove(6)     # ...lösche die erste 6
-
+mylist = [7, 8, 9]
+l.extend(mylist)        # hängt mylist Element für Element ans Ende
+                        # append würde [7,8,9] als Block hinzufügen — extend nicht!
 print(l)
 
 
 # ============================================================
-# SCHLEIFEN ÜBER LISTEN
+# 5. SUCHEN & PRÜFEN
 # ============================================================
 
-# Variante 1: einfach — gibt direkt den Wert aus
-for item in l:
-    print(item)
+l.append("hi")                  # zweites "hi" hinzufügen zum Testen
 
-# Variante 2: mit Index — gibt Position UND Wert aus
-for i in range(0, len(l)):
-    print(i, ":", l[i])
+print("hi" in l)                # → True   (ist "hi" enthalten?)
+print("xyz" in l)               # → False
 
-# Wann welche?
-# → Variante 1: wenn du nur den WERT brauchst
-# → Variante 2: wenn du auch die POSITION brauchst
+print(l.index("hi"))            # → gibt Index des ERSTEN Treffers zurück
+                                # Fehler wenn Wert nicht existiert!
+
+print(l.count("hi"))            # → 2   (wie oft kommt "hi" vor?)
+print(l.count(6))               # → 1
 
 
 # ============================================================
-# WEITERE NÜTZLICHE METHODEN
+# 6. LÖSCHEN
 # ============================================================
 
-# index() — gibt die POSITION eines Wertes zurück
-l.append("Maria")           # erst "Maria" wieder hinzufügen
-print(l.index("Maria"))     # → gibt den Index von "Maria" aus
-                            # Fehler wenn der Wert nicht in der Liste ist!
+l.remove("hi")          # löscht ERSTES Vorkommen von "hi" (sucht nach Wert)
+print(l)
 
-# clear() — löscht ALLE Elemente, Liste bleibt aber bestehen
+popped = l.pop()        # entfernt LETZTES Element und gibt es zurück
+print(popped)           # → "hi" (das zweite, das wir oben ergänzt hatten)
+
+popped2 = l.pop(2)      # entfernt Element an Index 2 und gibt es zurück
+print(popped2)
+
+del l[1:3]              # löscht Index 1 und 2 (end-Index 3 ist NICHT dabei)
+print(l)
+
+# Übersicht: Wann was verwenden?
+# remove(wert) → wenn du den WERT kennst
+# pop(index)   → wenn du den INDEX kennst + Rückgabewert brauchst
+# del l[i]     → wenn du schnell per Index oder Bereich löschen willst
+# clear()      → wenn du ALLES löschen willst (Liste bleibt bestehen)
+
 l.clear()
-print(l)                    # → [] (leere Liste)
+print(l)                # → []
 
 
 # ============================================================
-# LISTEN ZUSAMMENFÜHREN & KOPIEREN
+# 7. MATHEMATISCHE FUNKTIONEN
 # ============================================================
 
-l = [2, 3.5, False]         # Liste neu befüllen zum Weitermachen
-mylist = [2, 4, 6]
+num_l = [4, 1, 7, 2, 9, 3]
 
-new_list = l + mylist       # + verbindet zwei Listen zu einer neuen
-print(new_list)             # → [2, 3.5, False, 2, 4, 6]
+print(len(num_l))               # → 6     Anzahl Elemente
+print(sum(num_l))               # → 26    Summe aller Werte
+print(min(num_l))               # → 1     kleinster Wert
+print(max(num_l))               # → 9     größter Wert
+print(sum(num_l) / len(num_l))  # → 4.33  Durchschnitt
 
-# ACHTUNG: Referenz vs. Kopie!
-new_1_2 = new_list          # keine echte Kopie — beide zeigen auf DIESELBE Liste
-                            # ändert man new_list, ändert sich auch new_1_2!
+print(sorted(num_l))            # → [1,2,3,4,7,9]  neue sortierte Liste
+print(num_l)                    # → [4,1,7,2,9,3]  ORIGINAL unverändert!
 
-new_list.pop()              # entfernt letztes Element (6) aus new_list
-print(new_list)             # → [2, 3.5, False, 2, 4]
-print(new_1_2)              # → [2, 3.5, False, 2, 4]  ← AUCH verändert!
+num_l.sort()                    # sortiert die Liste direkt (in-place)
+print(num_l)                    # → [1,2,3,4,7,9]  ORIGINAL verändert!
 
-# Echte Kopie (unabhängig) erstellt man so:
-new_copy = new_list.copy()  # jetzt sind beide unabhängig voneinander
-
-
-# ============================================================
-# MATHEMATISCHE FUNKTIONEN AUF LISTEN
-# sum() und len() kennen wir schon — kombiniert ergibt das den Durchschnitt
-# ============================================================
-
-num_l = [10, 20, 30, 40, 50]
-
-print(sum(num_l))               # → 150  (alle Werte addiert)
-print(len(num_l))               # → 5    (Anzahl Elemente)
-print(sum(num_l) / len(num_l))  # → 30.0 (Durchschnitt = Summe / Anzahl)
-
-
-# ============================================================
-# all() und any() — prüfen ob Werte True oder False sind
-# Wichtig: 0 und False gelten als False, alles andere als True
-# ============================================================
-
-list_1 = [0, 1, True, False]    # enthält 0 und False → nicht alle True
-list_2 = [1, 1, True]           # alles ungleich 0 → alle True
-
-# all() → True nur wenn ALLE Elemente True sind
-print(all(list_1))  # → False  (weil 0 und False dabei sind)
-print(all(list_2))  # → True   (1, 1, True sind alle "truthy")
-
-# any() → True wenn MINDESTENS EIN Element True ist
-print(any(list_1))  # → True   (1 und True sind dabei)
-print(any(list_2))  # → True   (alle sind True)
+num_l.sort(reverse=True)        # absteigend sortieren
+print(num_l)                    # → [9,7,4,3,2,1]
 
 # Merkhilfe:
-# all() = UND-Verknüpfung (alle müssen True sein)
-# any() = ODER-Verknüpfung (mindestens eines muss True sein)
+# sorted(l) → gibt neue Liste zurück, Original bleibt
+# l.sort()  → verändert Original, kein Rückgabewert
 
 
 # ============================================================
-# VERSCHACHTELTE LISTEN (Liste in einer Liste)
+# 8. all() UND any()
+# 0 und False gelten als False, alles andere als True ("truthy")
+# ============================================================
+
+list_1 = [0, 1, True, False]    # enthält 0 und False
+list_2 = [1, 1, True]           # alles ungleich 0
+
+print(all(list_1))  # → False  (ALLE müssen True sein — 0 und False sind es nicht)
+print(all(list_2))  # → True   (alle Werte sind "truthy")
+
+print(any(list_1))  # → True   (MINDESTENS EINES muss True sein — 1 und True sind es)
+print(any(list_2))  # → True
+
+# Merkhilfe:
+# all() = UND → alle müssen True sein
+# any() = ODER → mindestens eines muss True sein
+
+
+# ============================================================
+# 9. SCHLEIFEN ÜBER LISTEN
+# ============================================================
+
+fruits = ["Apfel", "Banane", "Kirsche"]
+
+# Variante 1: for-in — einfachste Form, direkt den Wert
+for item in fruits:
+    print(item)
+
+# Variante 2: enumerate() — gibt Index UND Wert zurück (Pythonic!)
+for i, item in enumerate(fruits):
+    print(i, ":", item)
+
+# Variante 3: range/len — nur wenn Index-Manipulation nötig
+for i in range(len(fruits)):
+    print(i, ":", fruits[i])
+
+# Wann welche?
+# → Variante 1: nur der WERT gebraucht wird
+# → Variante 2: INDEX und WERT gebraucht werden (bevorzugt!)
+# → Variante 3: wenn du den Index zum Schreiben brauchst (z.B. fruits[i] = ...)
+
+
+# ============================================================
+# 10. LISTEN KOMBINIEREN & KOPIEREN
+# ============================================================
+
+a = [1, 2, 3]
+b = [4, 5, 6]
+
+combined = a + b        # + erstellt eine neue kombinierte Liste
+print(combined)         # → [1, 2, 3, 4, 5, 6]
+
+# ACHTUNG: Referenz vs. echte Kopie!
+ref = combined          # KEINE Kopie — beide zeigen auf DIESELBE Liste
+copy = combined.copy()  # ECHTE Kopie — unabhängig
+
+combined.pop()
+print(ref)              # → [1,2,3,4,5]  MIT verändert (gleiche Referenz!)
+print(copy)             # → [1,2,3,4,5,6] unverändert (echte Kopie)
+
+
+# ============================================================
+# 11. VERSCHACHTELTE LISTEN
 # Zugriff: n_list[äußerer_index][innerer_index]
 # ============================================================
 
 n_list = [[1, 3, 4, 2], [5, 6, 7, 8, 9]]
-#          ↑ Index 0       ↑ Index 1
+#          ↑ Index 0        ↑ Index 1
 
-print(n_list[0])        # → [1, 3, 4, 2]   erste innere Liste
-print(n_list[1])        # → [5, 6, 7, 8, 9] zweite innere Liste
-
+print(n_list[0])        # → [1, 3, 4, 2]
+print(n_list[1])        # → [5, 6, 7, 8, 9]
 print(n_list[1][1])     # → 6
-# Schritt 1: n_list[1]   → [5, 6, 7, 8, 9]
-# Schritt 2: [5,6,7,8,9][1] → 6  (Index 1 dieser Liste)
+# Schritt 1: n_list[1]      → [5, 6, 7, 8, 9]
+# Schritt 2: [5,6,7,8,9][1] → 6
+
+# Verschachtelt mit Schleife durchlaufen:
+for inner in n_list:
+    for value in inner:
+        print(value, end=" ")   # end=" " verhindert Zeilenumbruch
+    print()     
+    
+                # Zeilenumbruch nach jeder inneren Liste
