@@ -24,9 +24,9 @@ python3 U1/listen.py
 |-------|-------|
 | `u1_1.py` | Variablen, Datentypen, Operatoren, if/else, Funktionen |
 | `Binäre Operatoren.py` | AND, OR, XOR, NOT, Left/Right Shift |
-| `listen.py` | Listen: Erstellen, Slicing, Methoden, Schleifen, Verschachtelt |
+| `listen.py` | Listen: Erstellen, Slicing, Methoden, Schleifen, Verschachtelt, List Comprehensions |
 | `tuples.py` | Tuples: Vollständige Referenz mit allen Methoden |
-| `dt_tuples.py` | Tuples: Schulbeispiel mit Unpacking und Schleifen |
+| `dt_tuples.py` | Tuples: Schulbeispiel nach Dozenten-Vorlage (Unpacking, id(), any/all, nested) |
 | `aufgabe_filme.py` | Aufgabe: Filmdaten mit Tuple & Liste |
 | `speisekarte.py` | Aufgabe: Restaurant-Speisekarte mit Funktionen, Tuple & Liste |
 

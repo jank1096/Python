@@ -209,6 +209,41 @@ print(n_list[1][1])     # → 6
 for inner in n_list:
     for value in inner:
         print(value, end=" ")   # end=" " verhindert Zeilenumbruch
-    print()     
-    
-                # Zeilenumbruch nach jeder inneren Liste
+    print()                     # Zeilenumbruch nach jeder inneren Liste
+
+
+# ============================================================
+# 12. LIST COMPREHENSIONS
+# Kurzschreibweise um eine neue Liste zu erstellen.
+# Syntax: [ausdruck for element in liste if bedingung]
+#
+#  Langform:                      Kurzform (Comprehension):
+#  result = []                    result = [x**2 for x in zahlen]
+#  for x in zahlen:
+#      result.append(x**2)
+# ============================================================
+
+in_list = [4, 7, 14, 13, 18, 21]
+
+# Alle geraden Zahlen quadrieren:
+# → for-Schleife läuft durch in_list
+# → if ele%2==0  → nur wenn Zahl gerade ist
+# → ele**2       → dann das Ergebnis in die neue Liste
+out_list = [ele**2 for ele in in_list if ele % 2 == 0]
+print(out_list)   # → [16, 196, 324]
+
+# Quadratzahlen der geraden Zahlen von 1–9:
+sqr_list = [s**2 for s in range(1, 10) if s % 2 == 0]
+print(sqr_list)   # → [4, 16, 36, 64]
+
+# Alle geraden Zahlen bis 100, mal 3:
+hun_list = [i * 3 for i in range(100) if i % 2 == 0]
+print(hun_list)   # → [0, 6, 12, 18, ...]
+
+# Zum Vergleich: dieselbe Logik als klassische for-Schleife
+h_list = []
+for i in range(100):
+    if i % 2 == 0:
+        h_list.append(i * 3)
+
+print(h_list == hun_list)   # → True — identisches Ergebnis
