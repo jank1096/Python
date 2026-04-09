@@ -37,3 +37,4 @@ Python/
 | `speisekarte.py` | Restaurant — Funktionen, Tuples, Listen |
 | `aufgabe_sets.py` | Kursteilnehmer — Mengenoperationen |
 | `aufgabe_dictionaries.py` | Kontaktbuch — verschachtelte Dicts |
+| `log_analyst.py` | Log-Datei-Analyst — Regex, enumerate, 3 Formatierungsarten |
