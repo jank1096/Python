@@ -22,6 +22,8 @@ Python/
 | `tuples.py` | Unveränderlich, Unpacking, Konvertierung |
 | `sets.py` | Mengenoperationen, frozenset |
 | `dictionaries.py` | Zugriff, Schleifen, verschachtelte Dicts |
+| `string_formatierung.py` | %-Operator, .format(), f-Strings, Hex-Farben |
+| `regex.py` | re.match, search, findall, split, sub, E-Mail-Prüfung |
 
 ## Übung
 
