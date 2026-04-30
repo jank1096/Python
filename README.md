@@ -55,6 +55,7 @@ Einige Uebungen sind als kleine Projektordner aufgebaut:
 | `Uebungen/smarthomesystem.py/` | Erste Smart-Home-Variante mit einzelnen Klassen |
 | `Uebungen/smarthomesystem/` | Strukturierteres Smart-Home-Projekt mit Package-Aufbau |
 | `Uebungen/bibApi/src/bibApi/` | Kleine Bibliotheks-API mit Medien, Buechern und Magazinen |
+| `Uebungen/smartwarehouse/` | OOP-Lagerverwaltung mit Produktklassen, Exceptions, History und JSON-Export |
 
 ## Themen, die im Repo geuebt werden
 
